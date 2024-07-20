@@ -1,0 +1,64 @@
+import hiive.mdptoolbox as mdptoolbox
+import numpy as np
+from numpy.core.fromnumeric import mean
+import matplotlib.pyplot as plt
+
+np.random.seed(0)
+print("Forest Problem")
+
+P, R = mdptoolbox.example.forest(S = 4000)
+
+
+print("")
+print("Value Iteration")
+vi = mdptoolbox.mdp.ValueIteration(P, R, .9, epsilon = .01, max_iter = 1000, run_stat_frequency = 1)
+run_stats = vi.run()
+print("Number of Iterations: ", vi.iter)
+print("Time: ", vi.time)
+
+mean_per_iteration = [x['Mean V'] for x in run_stats]
+rewards_per_iteration = [x['Reward'] for x in run_stats]
+plt.plot(mean_per_iteration)
+plt.xlabel('Iteration')
+plt.ylabel('Mean Value')
+plt.title("Value Iteration Mean Values")
+plt.show()
+plt.plot(rewards_per_iteration)
+plt.xlabel('Iteration')
+plt.ylabel('Reward')
+plt.title("Value Iteration Reward")
+plt.show()
+
+
+print("")
+print("Policy Iteration")
+pi = mdptoolbox.mdp.PolicyIteration(P, R, .9, max_iter = 10000, run_stat_frequency = 1)
+run_stats = pi.run()
+mean_per_iteration = [x['Mean V'] for x in run_stats]
+rewards_per_iteration = [x['Reward'] for x in run_stats]
+plt.plot(mean_per_iteration)
+plt.xlabel('Iteration')
+plt.ylabel('Mean Value')
+plt.title("Policy Iteration Mean Values")
+plt.show()
+plt.plot(rewards_per_iteration)
+plt.xlabel('Iteration')
+plt.ylabel('Reward')
+plt.title("Policy Iteration Reward")
+plt.show()
+print("Number of Iterations: ", pi.iter)
+print("Time: ", pi.time)
+
+
+print("")
+print("Q Learning")
+ql = mdptoolbox.mdp.QLearning(P,R, .96, run_stat_frequency = 1, n_iter = 10000, epsilon = .01)
+run_stats = ql.run()
+mean_per_episode = [x['Mean V'] for x in run_stats]
+rewards_per_iteration = [x['Reward'] for x in run_stats]
+
+plt.plot(mean_per_episode)
+plt.xlabel('Episode')
+plt.ylabel('Mean Value')
+plt.title("Q-Learning Mean Values")
+plt.show()

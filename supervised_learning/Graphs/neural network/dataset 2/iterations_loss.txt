@@ -1,0 +1,13 @@
+Iteration 1, loss = 17.85985128
+Iteration 2, loss = 17.85985121
+Iteration 3, loss = 17.85985114
+Iteration 4, loss = 17.85985108
+Iteration 5, loss = 17.85985102
+Iteration 6, loss = 17.85985096
+Iteration 7, loss = 17.85985092
+Iteration 8, loss = 17.85985087
+Iteration 9, loss = 17.85985084
+Iteration 10, loss = 17.85985081
+Iteration 11, loss = 17.85985079
+Iteration 12, loss = 17.85985078
+Training loss did not improve more than tol=0.000100 for 10 consecutive epochs. Stopping.
